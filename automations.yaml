@@ -130,13 +130,8 @@
     to: 'on'
   - platform: state
     entity_id:
-    - binary_sensor.leak_sensor_1_moisture
-    - binary_sensor.lumi_lumi_sensor_wleak_aq1_moisture
-    to: 'on'
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 20
+    - input_boolean.leakmonitirng_switch
+    to:
   condition:
   - condition: or
     conditions:
@@ -146,24 +141,22 @@
     - condition: state
       entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_moisture
       state: 'on'
-  - condition: state
-    entity_id: input_boolean.leakmonitirng_switch
-    state: 'on'
   action:
   - service: timer.start
     data: {}
     target:
       entity_id: timer.notification_timer
+    enabled: false
   - service: notify.al_telegram
     data:
       message: Leak
   - if:
     - condition: state
       entity_id: input_boolean.leakmonitirng_switch
-      state: 'off'
+      state: 'on'
     then:
-    - service: input_boolean.turn_on
+    - service: timer.start
       data: {}
       target:
-        entity_id: input_boolean.leakmonitirng_switch
+        entity_id: timer.notification_timer
   mode: single
