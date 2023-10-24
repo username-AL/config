@@ -8,7 +8,7 @@ secrets.yaml
 known_devices.yaml
 
 #Useless garbage 
-home-assistant_v2.db-shm
-home-assistant_v2.db-wal
 zigbee.db-shm
+home-assistant_v2.db-wal
+home-assistant_v2.db-shm
 zigbee.db-shm
