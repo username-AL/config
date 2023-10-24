@@ -1,0 +1,148 @@
+- id: '1693426181583'
+  alias: Bath_button
+  description: Переключение света кнопкой на столешнице в ванной
+  trigger:
+  - device_id: 6f8faada9a52be034b8e9981c002be8f
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  condition: []
+  action:
+  - type: toggle
+    device_id: 85cfb55d171004cf7d70a375c49409e6
+    entity_id: b51c26ddbd2a570d5c97879e4036a140
+    domain: light
+  mode: single
+- id: '1693427302734'
+  alias: Spal_All_off
+  description: Выключить все кнопкой в спальне
+  trigger:
+  - device_id: c8085c6fd6793dc564cb58d9da26ac72
+    domain: zha
+    platform: device
+    type: remote_button_long_press
+    subtype: button
+  condition: []
+  action:
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.light_and_vent_off
+  mode: single
+- id: '1693601083173'
+  alias: Kori_All_Off
+  description: Выключение света кнопкой из прихожей
+  trigger:
+  - device_id: f801ad359d38df377697684f2ddb3e25
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: button
+  condition: []
+  action:
+  - service: script.light_and_vent_off
+    data: {}
+  mode: single
+- id: '1693664638087'
+  alias: Prih_Auto_On
+  description: Включение света в прихожей по ПИР сенсору
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 8c57eecb33ee8eb753b8acebe6e35867
+    entity_id: 58814817d7583a63b52fa36eebdd3fb3
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 54cf6a9b25e7119d17a46e0ebab47c97
+    entity_id: 2b442183a80875d001c645aa241b43e9
+    domain: light
+    flash: short
+  mode: single
+- id: '1693664730231'
+  alias: Prih_Auto_Off
+  description: Выключение света в прихожей при отсутствии движения в течении 5 минут
+  trigger:
+  - type: no_motion
+    platform: device
+    device_id: 8c57eecb33ee8eb753b8acebe6e35867
+    entity_id: 58814817d7583a63b52fa36eebdd3fb3
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 54cf6a9b25e7119d17a46e0ebab47c97
+    entity_id: 2b442183a80875d001c645aa241b43e9
+    domain: light
+  mode: single
+- id: '1694031981679'
+  alias: cover_auto_open
+  description: Открыть шторы в спальне по расписанию
+  trigger:
+  - platform: time
+    at: input_datetime.cover_open_time
+  condition: []
+  action:
+  - device_id: 881d332feeff986baf8ea051c82e34f9
+    domain: cover
+    entity_id: ad362e208a23ff5e3eda9750b90e7553
+    type: open
+  mode: single
+- alias: Notify about HA start
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:
+  - service: notify.al_telegram
+    data:
+      message: Home Assistant - started
+  id: 50ea89a2c3a34f16ab9017e17ba76e72
+- id: '1696366493855'
+  alias: Low battery level detection and notification
+  description: ''
+  use_blueprint:
+    path: BatteryNotifier.yaml
+    input:
+      actions:
+      - service: notify.al_telegram
+        data:
+          message: 'Low level detected for:
+
+            {{sensors}}'
+      threshold: 10
+      time: '18:00:00'
+- id: '1698001481300'
+  alias: Timered_Leak_Notification
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - timer.notification_timer
+    from: active
+    to: idle
+  - platform: state
+    entity_id:
+    - binary_sensor.leak_sensor_1_moisture
+    - binary_sensor.lumi_lumi_sensor_wleak_aq1_moisture
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.leak_sensor_1_moisture
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_moisture
+      state: 'on'
+  action:
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.notification_timer
+  - service: notify.al_telegram
+    data:
+      message: Leak
+  mode: single

@@ -1,0 +1,22 @@
+- id: '1693665388654'
+  name: Новая сцена
+  entities:
+    light.gost_sw_light_7:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: gost_sw Light
+      supported_features: 8
+      color_mode: onoff
+      state: 'on'
+    light.gost_sw_light_8:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: gost_sw Light
+      supported_features: 8
+      color_mode: onoff
+      state: 'on'
+  metadata: {}

@@ -1,0 +1,19 @@
+light_and_vent_off:
+  alias: Light_and_Vent_Off
+  sequence:
+  - service: light.turn_off
+    data: {}
+    target:
+      device_id:
+      - 54cf6a9b25e7119d17a46e0ebab47c97
+      - 3487808f711e3d907ee00dc7d6d42e43
+      - 25617a63990a16e5f00cd584ba71ee94
+      - c8433cfc4d6cf2acc1b908b66443e3f0
+      - 7d707afbc8425aefdecdcb939f9c448d
+      - c5b6f1610e85387d7d37939a0c8ee4bb
+      - 85cfb55d171004cf7d70a375c49409e6
+      - 4215d9e7e70218369803fffa02ba9259
+      entity_id:
+      - light.holl_light
+      - light.kuhn_light
+  mode: parallel
