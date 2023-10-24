@@ -130,7 +130,7 @@
     to: 'on'
   - platform: state
     entity_id:
-    - input_boolean.leakmonitirng_switch
+    - input_boolean.leakprotection_switch
     to:
   condition:
   - condition: or
@@ -142,21 +142,24 @@
       entity_id: binary_sensor.lumi_lumi_sensor_wleak_aq1_moisture
       state: 'on'
   action:
-  - service: timer.start
-    data: {}
-    target:
-      entity_id: timer.notification_timer
-    enabled: false
   - service: notify.al_telegram
     data:
-      message: Leak
+      message: Обнаружена протечка!!!
+  - service: notify.ni_telegram
+    data:
+      message: Обнаружена протечка, срочно домой!
   - if:
     - condition: state
-      entity_id: input_boolean.leakmonitirng_switch
+      entity_id: input_boolean.leakprotection_switch
       state: 'on'
     then:
     - service: timer.start
       data: {}
       target:
         entity_id: timer.notification_timer
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.notification_timer
+    enabled: false
   mode: single

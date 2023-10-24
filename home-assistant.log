@@ -185,3 +185,51 @@ TypeError: 'NoneType' object is not subscriptable
 2023-10-24 23:34:38.165 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
 2023-10-24 23:35:38.143 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
 2023-10-24 23:36:38.374 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:36:55.464 ERROR (MainThread) [homeassistant] Error doing job: Task exception was never retrieved
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 229, in _handle_refresh_interval
+    await self._async_refresh(log_failures=True, scheduled=True)
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 374, in _async_refresh
+    self.async_update_listeners()
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 164, in async_update_listeners
+    update_callback()
+  File "/usr/src/homeassistant/homeassistant/helpers/update_coordinator.py", line 431, in _handle_coordinator_update
+    self.async_write_ha_state()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 746, in async_write_ha_state
+    self._async_write_ha_state()
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 808, in _async_write_ha_state
+    state = self._stringify_state(available)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 752, in _stringify_state
+    if (state := self.state) is None:
+                 ^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/components/sensor/__init__.py", line 479, in state
+    value = self.native_value
+            ^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/components/github/sensor.py", line 215, in native_value
+    return self.entity_description.value_fn(self.coordinator.data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/components/github/sensor.py", line 102, in <lambda>
+    value_fn=lambda data: data["default_branch_ref"]["commit"]["message"][:255],
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2023-10-24 23:37:08.381 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:37:38.375 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:38:08.161 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:38:38.166 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:38:38.372 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:39:08.374 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:40:08.173 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:40:08.375 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:41:08.173 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:41:08.375 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:41:08.480 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:41:38.587 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:43:08.373 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:43:38.374 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:44:08.162 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:44:38.270 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:44:38.374 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:45:08.373 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:45:08.383 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:45:08.588 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
