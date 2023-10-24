@@ -2,7 +2,13 @@
 .cloud
 .google.token
 
-# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+# Secret data
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
+
+#Useless garbage 
+home-assistant_v2.db-shm
+home-assistant_v2.db-wal
+zigbee.db-shm
+zigbee.db-shm

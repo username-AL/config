@@ -242,3 +242,8 @@ TypeError: 'NoneType' object is not subscriptable
 2023-10-24 23:49:08.165 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
 2023-10-24 23:49:08.175 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
 2023-10-24 23:49:38.169 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:50:08.270 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:50:08.482 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2023-10-24 23:51:08.166 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:52:08.165 WARNING (MainThread) [zigpy.application] Received relays from an unknown device: 0x2abf
+2023-10-24 23:52:38.483 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
