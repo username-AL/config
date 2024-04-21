@@ -1,78 +1,96 @@
-2024-03-13 00:10:43.798 WARNING (SyncWorker_1) [homeassistant.loader] We found a custom integration yandex_station which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2024-03-13 00:10:43.800 WARNING (SyncWorker_1) [homeassistant.loader] We found a custom integration yandex_station_intents which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2024-03-13 00:10:43.802 WARNING (SyncWorker_1) [homeassistant.loader] We found a custom integration openhasp which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
-2024-03-13 00:11:01.982 WARNING (MainThread) [zhaquirks] Loaded custom quirks. Please contribute them to https://github.com/zigpy/zha-device-handlers
-2024-03-13 00:11:05.953 ERROR (MainThread) [homeassistant.components.sensor] Error adding entities for domain sensor with platform github
+2024-04-10 15:11:45.719 WARNING (SyncWorker_4) [homeassistant.loader] We found a custom integration yandex_station which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2024-04-10 15:11:45.721 WARNING (SyncWorker_4) [homeassistant.loader] We found a custom integration yandex_station_intents which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2024-04-10 15:11:45.723 WARNING (SyncWorker_4) [homeassistant.loader] We found a custom integration openhasp which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant
+2024-04-10 15:11:56.945 WARNING (MainThread) [py.warnings] /usr/local/lib/python3.12/site-packages/telegram/utils/request.py:49: UserWarning: python-telegram-bot is using upstream urllib3. This is allowed but not supported by python-telegram-bot maintainers.
+  warnings.warn(
+
+2024-04-10 15:11:59.142 WARNING (MainThread) [zhaquirks] Loaded custom quirks. Please contribute them to https://github.com/zigpy/zha-device-handlers
+2024-04-10 15:12:02.865 ERROR (MainThread) [homeassistant.components.github] Could not resolve to a Repository with the name 'username-AL/HA_repository'.
 Traceback (most recent call last):
-  File "/usr/src/homeassistant/homeassistant/helpers/entity_platform.py", line 509, in async_add_entities
-    await asyncio.gather(*tasks)
-  File "/usr/src/homeassistant/homeassistant/helpers/entity_platform.py", line 754, in _async_add_entity
-    await entity.add_to_platform_finish()
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 1025, in add_to_platform_finish
-    self.async_write_ha_state()
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 745, in async_write_ha_state
-    self._async_write_ha_state()
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 845, in _async_write_ha_state
-    state, attr = self._async_generate_attributes()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 786, in _async_generate_attributes
-    state = self._stringify_state(available)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 751, in _stringify_state
-    if (state := self.state) is None:
-                 ^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/components/sensor/__init__.py", line 501, in state
-    value = self.native_value
-            ^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/components/github/sensor.py", line 214, in native_value
-    return self.entity_description.value_fn(self.coordinator.data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/components/github/sensor.py", line 101, in <lambda>
-    value_fn=lambda data: data["default_branch_ref"]["commit"]["message"][:255],
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-TypeError: 'NoneType' object is not subscriptable
-2024-03-13 00:11:05.976 ERROR (MainThread) [homeassistant.components.sensor] Error while setting up github platform for sensor
+  File "/usr/src/homeassistant/homeassistant/components/github/coordinator.py", line 128, in _async_update_data
+    response = await self._client.graphql(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/github.py", line 239, in graphql
+    return await self._client.async_call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/client.py", line 155, in async_call_api
+    raise GitHubGraphQLException(
+aiogithubapi.exceptions.GitHubGraphQLException: Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+2024-04-10 15:12:02.917 WARNING (MainThread) [homeassistant.helpers.frame] Detected that custom integration 'openhasp' accesses hass.components.mqtt. This is deprecated and will stop working in Home Assistant 2024.9, it should be updated to import functions used from mqtt directly at custom_components/openhasp/__init__.py, line 392: await self.hass.components.mqtt.async_subscribe(, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues
+2024-04-10 15:12:02.964 WARNING (MainThread) [homeassistant.components.light] Entity None (<class 'custom_components.openhasp.light.HASPBackLight'>) is using deprecated supported features values which will be removed in HA Core 2025.1. Instead it should use <LightEntityFeature: 1> and color modes, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues and reference https://developers.home-assistant.io/blog/2023/12/28/support-feature-magic-numbers-deprecation
+2024-04-10 15:12:02.965 WARNING (MainThread) [homeassistant.components.light] None (<class 'custom_components.openhasp.light.HASPBackLight'>) does not set supported color modes, this will stop working in Home Assistant Core 2025.3, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues
+2024-04-10 15:12:03.011 WARNING (MainThread) [homeassistant.components.light] Entity None (<class 'custom_components.openhasp.light.HASPMoodLight'>) is using deprecated supported features values which will be removed in HA Core 2025.1. Instead it should use <LightEntityFeature: 17> and color modes, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues and reference https://developers.home-assistant.io/blog/2023/12/28/support-feature-magic-numbers-deprecation
+2024-04-10 15:12:03.011 WARNING (MainThread) [homeassistant.components.light] None (<class 'custom_components.openhasp.light.HASPMoodLight'>) does not set supported color modes, this will stop working in Home Assistant Core 2025.3, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues
+2024-04-10 15:12:03.046 WARNING (MainThread) [homeassistant.components.light] None (<class 'custom_components.openhasp.light.HASPLight'>) does not set supported color modes, this will stop working in Home Assistant Core 2025.3, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues
+2024-04-10 15:12:03.052 WARNING (MainThread) [homeassistant.components.light] None (<class 'custom_components.openhasp.light.HASPLight'>) does not set supported color modes, this will stop working in Home Assistant Core 2025.3, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues
+2024-04-10 15:12:03.058 WARNING (MainThread) [homeassistant.components.light] None (<class 'custom_components.openhasp.light.HASPLight'>) does not set supported color modes, this will stop working in Home Assistant Core 2025.3, please create a bug report at https://github.com/HASwitchPlate/openHASP-custom-component/issues
+2024-04-10 15:12:04.171 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template<template=({{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_duration') | int }}) renders=2>
 Traceback (most recent call last):
-  File "/usr/src/homeassistant/homeassistant/helpers/entity_platform.py", line 369, in _async_setup_platform
-    await asyncio.gather(*pending)
-  File "/usr/src/homeassistant/homeassistant/helpers/entity_platform.py", line 509, in async_add_entities
-    await asyncio.gather(*tasks)
-  File "/usr/src/homeassistant/homeassistant/helpers/entity_platform.py", line 754, in _async_add_entity
-    await entity.add_to_platform_finish()
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 1025, in add_to_platform_finish
-    self.async_write_ha_state()
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 745, in async_write_ha_state
-    self._async_write_ha_state()
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 845, in _async_write_ha_state
-    state, attr = self._async_generate_attributes()
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 786, in _async_generate_attributes
-    state = self._stringify_state(available)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/helpers/entity.py", line 751, in _stringify_state
-    if (state := self.state) is None:
-                 ^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/components/sensor/__init__.py", line 501, in state
-    value = self.native_value
-            ^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/components/github/sensor.py", line 214, in native_value
-    return self.entity_description.value_fn(self.coordinator.data)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/components/github/sensor.py", line 101, in <lambda>
-    value_fn=lambda data: data["default_branch_ref"]["commit"]["message"][:255],
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-TypeError: 'NoneType' object is not subscriptable
-2024-03-13 00:11:07.674 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template<template=({{ 100 - state_attr('cover.spal_cvr_cover', 'current_position') }}) renders=2>
-Traceback (most recent call last):
-  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 569, in async_render
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 573, in async_render
     render_result = _render_with_context(self.template, compiled, **kwargs)
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2247, in _render_with_context
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2364, in _render_with_context
     return template.render(**kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/jinja2/environment.py", line 1301, in render
+  File "/usr/local/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
     self.environment.handle_exception()
-  File "/usr/local/lib/python3.11/site-packages/jinja2/environment.py", line 936, in handle_exception
+  File "/usr/local/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 1, in top-level template code
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2056, in forgiving_int_filter
+    raise_no_default("int", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1668, in raise_no_default
+    raise ValueError(
+ValueError: Template error: int got invalid input 'None' when rendering template '{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_duration') | int }}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 699, in async_render_to_info
+    render_info._result = self.async_render(
+                          ^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 575, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: int got invalid input 'None' when rendering template '{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_duration') | int }}' but no default was specified
+2024-04-10 15:12:04.186 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template<template=({{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_position') | int }}) renders=2>
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 573, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2364, in _render_with_context
+    return template.render(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "<template>", line 1, in top-level template code
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2056, in forgiving_int_filter
+    raise_no_default("int", value)
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 1668, in raise_no_default
+    raise ValueError(
+ValueError: Template error: int got invalid input 'None' when rendering template '{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_position') | int }}' but no default was specified
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 699, in async_render_to_info
+    render_info._result = self.async_render(
+                          ^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 575, in async_render
+    raise TemplateError(err) from err
+homeassistant.exceptions.TemplateError: ValueError: Template error: int got invalid input 'None' when rendering template '{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_position') | int }}' but no default was specified
+2024-04-10 15:12:04.204 ERROR (MainThread) [homeassistant.helpers.event] Error while processing template: Template<template=({{ 100 - state_attr('cover.spal_cvr_cover', 'current_position') }}) renders=2>
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 573, in async_render
+    render_result = _render_with_context(self.template, compiled, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 2364, in _render_with_context
+    return template.render(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/usr/local/lib/python3.12/site-packages/jinja2/environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
   File "<template>", line 1, in top-level template code
 TypeError: unsupported operand type(s) for -: 'int' and 'NoneType'
@@ -80,12 +98,73 @@ TypeError: unsupported operand type(s) for -: 'int' and 'NoneType'
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 695, in async_render_to_info
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 699, in async_render_to_info
     render_info._result = self.async_render(
                           ^^^^^^^^^^^^^^^^^^
-  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 571, in async_render
+  File "/usr/src/homeassistant/homeassistant/helpers/template.py", line 575, in async_render
     raise TemplateError(err) from err
 homeassistant.exceptions.TemplateError: TypeError: unsupported operand type(s) for -: 'int' and 'NoneType'
-2024-03-13 00:11:07.691 ERROR (MainThread) [custom_components.openhasp] TemplateError('TypeError: unsupported operand type(s) for -: 'int' and 'NoneType'') while processing template 'Template<template=({{ 100 - state_attr('cover.spal_cvr_cover', 'current_position') }}) renders=4>' in entity 'None'
-2024-03-13 00:11:15.353 WARNING (MainThread) [zigpy.application] Zigbee channel 11 utilization is 80.38%!
-2024-03-13 00:11:15.353 WARNING (MainThread) [zigpy.application] If you are having problems joining new devices, are missing sensor updates, or have issues keeping devices joined, ensure your coordinator is away from interference sources such as USB 3.0 devices, SSDs, WiFi routers, etc.
+2024-04-10 15:12:04.225 ERROR (MainThread) [custom_components.openhasp] TemplateError('ValueError: Template error: int got invalid input 'None' when rendering template '{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_duration') | int }}' but no default was specified') while processing template 'Template<template=({{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_duration') | int }}) renders=4>' in entity 'None'
+2024-04-10 15:12:04.226 ERROR (MainThread) [custom_components.openhasp] TemplateError('ValueError: Template error: int got invalid input 'None' when rendering template '{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_position') | int }}' but no default was specified') while processing template 'Template<template=({{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_position') | int }}) renders=4>' in entity 'None'
+2024-04-10 15:12:04.226 ERROR (MainThread) [custom_components.openhasp] TemplateError('TypeError: unsupported operand type(s) for -: 'int' and 'NoneType'') while processing template 'Template<template=({{ 100 - state_attr('cover.spal_cvr_cover', 'current_position') }}) renders=4>' in entity 'None'
+2024-04-10 15:12:12.022 WARNING (MainThread) [zigpy.application] Zigbee channel 11 utilization is 75.96%!
+2024-04-10 15:12:12.023 WARNING (MainThread) [zigpy.application] If you are having problems joining new devices, are missing sensor updates, or have issues keeping devices joined, ensure your coordinator is away from interference sources such as USB 3.0 devices, SSDs, WiFi routers, etc.
+2024-04-10 15:12:13.030 ERROR (MainThread) [homeassistant.components.github] Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/github/coordinator.py", line 128, in _async_update_data
+    response = await self._client.graphql(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/github.py", line 239, in graphql
+    return await self._client.async_call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/client.py", line 155, in async_call_api
+    raise GitHubGraphQLException(
+aiogithubapi.exceptions.GitHubGraphQLException: Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+2024-04-10 15:12:23.477 ERROR (MainThread) [homeassistant.components.github] Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/github/coordinator.py", line 128, in _async_update_data
+    response = await self._client.graphql(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/github.py", line 239, in graphql
+    return await self._client.async_call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/client.py", line 155, in async_call_api
+    raise GitHubGraphQLException(
+aiogithubapi.exceptions.GitHubGraphQLException: Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+2024-04-10 15:12:43.859 ERROR (MainThread) [homeassistant.components.github] Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/github/coordinator.py", line 128, in _async_update_data
+    response = await self._client.graphql(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/github.py", line 239, in graphql
+    return await self._client.async_call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/client.py", line 155, in async_call_api
+    raise GitHubGraphQLException(
+aiogithubapi.exceptions.GitHubGraphQLException: Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+2024-04-10 15:13:24.615 ERROR (MainThread) [homeassistant.components.github] Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/github/coordinator.py", line 128, in _async_update_data
+    response = await self._client.graphql(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/github.py", line 239, in graphql
+    return await self._client.async_call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/client.py", line 155, in async_call_api
+    raise GitHubGraphQLException(
+aiogithubapi.exceptions.GitHubGraphQLException: Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+2024-04-10 15:13:57.063 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2024-04-10 15:14:27.069 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2024-04-10 15:14:27.178 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2024-04-10 15:14:27.296 WARNING (MainThread) [zigpy.application] Unknown device AddrModeAddress(addr_mode=<AddrMode.NWK: 2>, address=0x2ABF)
+2024-04-10 15:14:45.146 ERROR (MainThread) [homeassistant.components.github] Could not resolve to a Repository with the name 'username-AL/HA_repository'.
+Traceback (most recent call last):
+  File "/usr/src/homeassistant/homeassistant/components/github/coordinator.py", line 128, in _async_update_data
+    response = await self._client.graphql(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/github.py", line 239, in graphql
+    return await self._client.async_call_api(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/aiogithubapi/client.py", line 155, in async_call_api
+    raise GitHubGraphQLException(
+aiogithubapi.exceptions.GitHubGraphQLException: Could not resolve to a Repository with the name 'username-AL/HA_repository'.

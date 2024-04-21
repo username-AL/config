@@ -28,3 +28,47 @@ alicerun:
       entity_id:
       - media_player.yandex_station_ff98f0291b0365378364a4bb
   mode: single
+alicerundayplay:
+  alias: AliceRunDayPlay
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: command
+      media_content_id: Включи плэйлист дня
+    target:
+      entity_id:
+      - media_player.yandex_station_ff98f0291b0365378364a4bb
+  mode: single
+alicerundejavu:
+  alias: AliceDejavu
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: command
+      media_content_id: Поставь подборку дежавю
+    target:
+      entity_id:
+      - media_player.yandex_station_ff98f0291b0365378364a4bb
+  mode: single
+alicerunliked:
+  alias: AliceRunLiked
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: command
+      media_content_id: Включи мою музыку
+    target:
+      entity_id:
+      - media_player.yandex_station_ff98f0291b0365378364a4bb
+  mode: single
+alicelike:
+  alias: AliceLike
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: command
+      media_content_id: Поставь лайк
+    target:
+      entity_id:
+      - media_player.yandex_station_ff98f0291b0365378364a4bb
+  mode: single

@@ -61,26 +61,6 @@
     entity_id: 2b442183a80875d001c645aa241b43e9
     domain: light
   mode: single
-- id: '1694031981679'
-  alias: cover_auto_open
-  description: Открыть шторы в спальне по расписанию
-  trigger:
-  - platform: time
-    at: input_datetime.cover_open_time
-  condition: []
-  action:
-  - device_id: 881d332feeff986baf8ea051c82e34f9
-    domain: cover
-    entity_id: ad362e208a23ff5e3eda9750b90e7553
-    type: open
-  - if:
-    - condition: state
-      entity_id: input_boolean.morningwithalice
-      state: 'on'
-    then:
-    - service: script.alicerun
-      data: {}
-  mode: single
 - alias: Notify about HA start
   trigger:
   - platform: homeassistant
@@ -103,7 +83,7 @@
 
             {{sensors}}'
       threshold: 10
-      time: '18:00:00'
+      time: '18:12:00'
 - id: '1698001481300'
   alias: Timered_Leak_Notification
   description: ''
@@ -153,49 +133,6 @@
     target:
       entity_id: timer.notification_timer
     enabled: false
-  mode: single
-- id: '1700597798546'
-  alias: ZHA - Tuya - TS004F Rotating Knob - Custom Actions
-  description: ''
-  use_blueprint:
-    path: seamus65/zha_moes_smart_knob_lights.yaml
-    input:
-      remote: e747216ad87c07247527aef0b3c753c8
-      light:
-        entity_id:
-        - light.workzone_led_light
-      press_short: []
-      toggle:
-      - service: light.turn_on
-        data:
-          brightness_pct: 1
-        target:
-          entity_id: light.workzone_led_light
-      press_double: []
-      press_long: []
-      rotate_left:
-      - service: light.turn_on
-        data:
-          brightness_step: -9
-          transition: 0
-        target:
-          entity_id: light.workzone_led_light
-      max: 10
-- id: '1700847051669'
-  alias: table_on-off_byBtn
-  description: ''
-  trigger:
-  - device_id: c8085c6fd6793dc564cb58d9da26ac72
-    domain: zha
-    platform: device
-    type: remote_button_double_press
-    subtype: button
-  condition: []
-  action:
-  - type: toggle
-    device_id: 389a819c9ae2d1a40585648688eed7a5
-    entity_id: 8801a601e10ee26d3381cd9281d9df4f
-    domain: light
   mode: single
 - id: '1707253277250'
   alias: Alice_kitchenLightOn
@@ -276,22 +213,58 @@
     entity_id: 8801a601e10ee26d3381cd9281d9df4f
     domain: light
   mode: single
-- id: '1707290178003'
-  alias: Alice_romantic
+- id: '1710279913808'
+  alias: Alice_workZoneOff
   description: ''
   trigger:
   - platform: event
     event_type: yandex_scenario
     event_data:
-      scenario_name: Romantic
+      scenario_name: WorkZoneOff
   condition: []
   action:
   - type: turn_off
-    device_id: 33accf107bcc4993a57d30c782990d5d
-    entity_id: e73dbeae875988e660fbe4ed3c198ee3
+    device_id: f2c87943f16eb0a0f69ad37bc3de38e6
+    entity_id: 10c25372265ce33ef5b028c24252649e
     domain: light
+  mode: single
+- id: '1710279959688'
+  alias: Alice_workZoneOn
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: WorkZoneOn
+  condition: []
+  action:
   - type: turn_on
-    device_id: 389a819c9ae2d1a40585648688eed7a5
-    entity_id: 8801a601e10ee26d3381cd9281d9df4f
+    device_id: f2c87943f16eb0a0f69ad37bc3de38e6
+    entity_id: 10c25372265ce33ef5b028c24252649e
     domain: light
+  mode: single
+- id: '1710535575458'
+  alias: TimeredAlarmAutomation
+  description: Это автоматизация будильник
+  trigger:
+  - platform: time
+    at: input_datetime.alarmtime
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: input_boolean.coverautoopen
+      state: 'on'
+    then:
+    - device_id: 881d332feeff986baf8ea051c82e34f9
+      domain: cover
+      entity_id: ad362e208a23ff5e3eda9750b90e7553
+      type: open
+  - if:
+    - condition: state
+      entity_id: input_boolean.morningwithalice
+      state: 'on'
+    then:
+    - service: script.alicerun
+      data: {}
   mode: single

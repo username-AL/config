@@ -8,3 +8,15 @@
         data:
           entity_id: cover.spal_cvr_cover
           position: "{{ 0 }}"
+
+
+service: openhasp.push_image
+target:
+  entity_id: openhasp.plate35
+data:
+  image: >-
+    {{state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb',
+    'entity_picture')}}
+  obj: p1b1
+  width: 200
+  height: 200

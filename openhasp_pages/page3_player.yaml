@@ -84,3 +84,27 @@
             {% else %}
             true
             {%-endif %}
+
+- obj: "p3b31" # MyMusic
+  event:
+    "down":
+      - service: script.alicerunliked
+        data: {}
+
+- obj: "p3b32" # Dejavu
+  event:
+    "down":
+      - service: script.alicerundejavu
+        data: {}
+
+- obj: "p3b33" # playList of the day
+  event:
+    "down":
+      - service: script.alicerundayplay
+        data: {}
+
+- obj: "p3b34" # Set like to this
+  event:
+    "down":
+      - service: script.alicelike
+        data: {}

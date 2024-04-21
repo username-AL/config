@@ -1,0 +1,133 @@
+- obj: "p5b1" #Time hour Label
+  properties:
+    "text": "{{'{:02}'.format(state_attr('input_datetime.alarmtime', 'hour')) }}"
+    "text_color": "{{ (states('automation.timeredalarmautomation')  == 'on') | iif('#000000', '#999999') }}"
+
+- obj: "p5b2" #Time hour|minutes delimeter
+  properties:
+    "text_color": "{{ (states('automation.timeredalarmautomation')  == 'on') | iif('#000000', '#999999') }}"
+
+- obj: "p5b3" #Time minute Label
+  properties:
+    "text": "{{'{:02}'.format(state_attr('input_datetime.alarmtime', 'minute')) }}"
+    "text_color": "{{ (states('automation.timeredalarmautomation')  == 'on') | iif('#000000', '#999999') }}"
+
+- obj: "p5b11" # Hours up button
+  event:
+    "down":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour') + 1 if state_attr('input_datetime.alarmtime', 'hour') < 23 else 0}}:{{ state_attr('input_datetime.alarmtime', 'minute') }}"
+
+    "hold":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour') + 2 if state_attr('input_datetime.alarmtime', 'hour') < 22 else 0}}:{{ state_attr('input_datetime.alarmtime', 'minute') }}"
+
+- obj: "p5b12" # Hours down button
+  event:
+    "down":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour') - 1 if state_attr('input_datetime.alarmtime', 'hour') > 0 else 23}}:{{ state_attr('input_datetime.alarmtime', 'minute') }}"
+    "hold":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour') - 2 if state_attr('input_datetime.alarmtime', 'hour') > 1 else 23}}:{{ state_attr('input_datetime.alarmtime', 'minute') }}"
+
+- obj: "p5b13" # Minutes up button
+  event:
+    "down":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour')}}:{{ state_attr('input_datetime.alarmtime', 'minute') + 1 if state_attr('input_datetime.alarmtime', 'minute') < 59 else 0}}"
+
+    "hold":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour')}}:{{ state_attr('input_datetime.alarmtime', 'minute') + 3 if state_attr('input_datetime.alarmtime', 'minute') < 57 else 0}}"
+
+- obj: "p5b14" # Minutes down button
+  event:
+    "down":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour')}}:{{ state_attr('input_datetime.alarmtime', 'minute') - 1 if state_attr('input_datetime.alarmtime', 'minute') > 0 else 59}}"
+
+    "hold":
+      - service: input_datetime.set_datetime
+        target:
+          entity_id: input_datetime.alarmtime
+        data:
+          time: "{{state_attr('input_datetime.alarmtime', 'hour')}}:{{ state_attr('input_datetime.alarmtime', 'minute') - 3 if state_attr('input_datetime.alarmtime', 'minute') > 3 else 59}}"
+
+- obj: "p5b20" #Alice switch
+  properties:
+    "val": '{{ 1 if states("input_boolean.morningwithalice") == "on" else 0  }}'
+  event:
+    "down":
+      - service_template: >
+          {% if val == 0 -%}
+          input_boolean.turn_on
+          {% else -%}
+          input_boolean.turn_off
+          {% endif -%}
+        entity_id: "input_boolean.morningwithalice"
+
+
+- obj: "p5b21" #Alice switch label
+  properties:
+    "text_color": "{{ (states('input_boolean.morningwithalice')  == 'on') | iif('#000000', '#999999') }}"
+
+- obj: "p5b30"
+  properties:
+    "val": '{{ 1 if states("input_boolean.coverautoopen") == "on" else 0  }}'
+  event:
+    "down":
+      - service_template: >
+          {% if val == 0 -%}
+          input_boolean.turn_on
+          {% else -%}
+          input_boolean.turn_off
+          {% endif -%}
+        entity_id: "input_boolean.coverautoopen"
+
+- obj: "p5b31" #Alice switch label
+  properties:
+    "text_color":
+      "{{ (states('input_boolean.coverautoopen')  == 'on') | iif('#000000', '#999999') }}"
+
+- obj: "p5b40"
+  properties:
+    "val": '{{ 1 if states("automation.timeredalarmautomation") == "on" else 0  }}'
+  event:
+    "down":
+      - service_template: >
+          {% if val == 0 -%}
+          automation.turn_on
+          {% else -%}
+          automation.turn_off
+          {% endif -%}
+        entity_id: "automation.timeredalarmautomation"
+
+- obj: "p5b41" #Alice switch label
+  properties:
+    "text_color":
+      "{{ (states('automation.timeredalarmautomation')  == 'on') | iif('#000000', '#999999') }}"      
+      #
+      #
+      #
