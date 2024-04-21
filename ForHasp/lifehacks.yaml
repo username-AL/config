@@ -1,0 +1,10 @@
+# Open button
+- obj: "p4b11" # Light brightness
+  properties:
+    "val": "{{ 1 if state_attr('cover.spal_cvr_cover', 'current_position') >= -1 else 0 }}"
+  event:
+    "up":
+      - service: cover.set_cover_position
+        data:
+          entity_id: cover.spal_cvr_cover
+          position: "{{ 0 }}"

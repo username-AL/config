@@ -1,0 +1,25 @@
+# OnOff button
+- obj: "p1b12" 
+  properties:
+    "val": "{{ state_attr('light.workzone_led_light', 'brightness') if state_attr('light.workzone_led_light', 'brightness') != None else 0 }}"
+  event:
+    "changed":
+      - service: light.turn_on
+        data:
+          entity_id: light.workzone_led_light
+          brightness: "{{ val }}"
+    "up":
+      - service: light.turn_on
+        data:
+          entity_id: light.workzone_led_light
+          brightness: "{{ val }}"
+
+# Brightness slider
+- obj: "p1b11" 
+  properties:
+    "val": '{{ 1 if states("light.workzone_led_light") == "on" else 0 }}'
+    "text": '{{ "#000000 \uE6E8#" if is_state("light.workzone_led_light", "on") else "#000000 \uE335#" | e }}'
+  event:
+    "up":
+      - service: homeassistant.toggle
+        entity_id: "light.workzone_led_light"

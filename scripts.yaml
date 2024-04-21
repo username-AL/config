@@ -17,3 +17,14 @@ light_and_vent_off:
       - light.holl_light
       - light.kuhn_light
   mode: parallel
+alicerun:
+  alias: AliceMorning
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_type: command
+      media_content_id: Включи музыку для бодрого утра
+    target:
+      entity_id:
+      - media_player.yandex_station_ff98f0291b0365378364a4bb
+  mode: single

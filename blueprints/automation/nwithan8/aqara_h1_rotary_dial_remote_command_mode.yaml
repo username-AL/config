@@ -1,0 +1,68 @@
+blueprint:
+  name: Aqara H1 Rotary Dial - Remote (Command Mode)
+  source_url: https://raw.githubusercontent.com/nwithan8/configs/main/home_assistant/blueprints/automations/aqara_h1_rotary_dial_remote_command_mode.yaml
+  description: This automation allows using an Aqara H1 Rotary Dial (ZigBee) to trigger
+    actions. Requires a custom quirk if using with ZHA.
+  domain: automation
+  input:
+    dial:
+      name: Aqara H1 Rotary Dial
+      description: Select the rotary dial you wish to use
+      selector:
+        device:
+          integration: zha
+          manufacturer: LUMI
+          model: lumi.remote.rkba01
+          multiple: false
+    double:
+      name: Double Press
+      description: The action to perform on a double press of the dial button
+      selector:
+        action: {}
+      default: []
+    long:
+      name: Long Press
+      description: The action to perform on a long press of the dial button
+      selector:
+        action: {}
+      default: []
+    left:
+      name: Left Turn
+      description: The action to perform on rotating the dial to the left
+      selector:
+        action: {}
+      default: []
+    right:
+      name: Right Turn
+      description: The action to perform on rotating the dial to the right
+      selector:
+        action: {}
+      default: []
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: event
+  event_type: zha_event
+  event_data:
+    device_id: !input dial
+action:
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "toggle" }}'
+    sequence: !input double
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "off" }}'
+    sequence: !input long
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "stop_rotation" and trigger.event.data.args.rotation_direction
+        == -1 }}'
+    sequence: !input left
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "stop_rotation" and trigger.event.data.args.rotation_direction
+        == 1 }}'
+    sequence: !input right
+  default: []

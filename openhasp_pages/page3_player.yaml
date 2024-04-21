@@ -1,0 +1,86 @@
+- obj: "p3b12" # artist label
+  properties:
+    "text": "{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_artist') if state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_artist') else '-' }}"
+
+- obj: "p3b13" # title label
+  properties:
+    "text": "{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_title') if state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_title') else '-' }}"
+
+- obj: "p3b14" # progressbar
+  properties:
+    "max": "{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_duration') | int }}"
+    "val": "{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','media_position') | int }}"
+
+- obj: "p3b18" # play/pause/stop
+  properties:
+    "text": >
+      {% if is_state('media_player.yandex_station_ff98f0291b0365378364a4bb', 'playing') %}
+      {{ "\uE3E4" | e }}
+      {%-else %}
+      {{ "\uE40A" | e }}
+      {%-endif %}
+    "text_opa": "{{ '80' if (is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unavailable') or is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unknown')) else '255' }}"
+  event:
+    "down":
+      - service: media_player.media_play_pause
+        target:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+    "long":
+      - service: media_player.media_stop
+        target:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+
+- obj: "p3b17" # prev
+  properties:
+    "text_opa": "{{ '80' if (is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unavailable') or is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unknown')) else '255' }}"
+  event:
+    "down":
+      - service: media_player.media_previous_track
+        target:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+
+- obj: "p3b19" # next
+  properties:
+    "text_opa": "{{ '80' if (is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unavailable') or is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unknown')) else '255' }}"
+  event:
+    "down":
+      - service: media_player.media_next_track
+        target:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+
+- obj: "p3b20" # volume slider
+  properties:
+    "val": "{{ state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb','volume_level') * 100 | int }}"
+    "click": "{{ 'false' if (is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unavailable') or is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unknown')) else 'true' }}"
+  event:
+    "changed":
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+          volume_level: "{{ val | int / 100 }}"
+    "up":
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+          volume_level: "{{ val | int / 100 }}"
+
+- obj: "p3b24" # mute
+  properties:
+    "text": >
+      {% if state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb', 'is_volume_muted') %}
+      {{ "\uE75F" | e }}
+      {%-else %}
+      {{ "\uE57E" | e }}
+      {%-endif %}
+    "text_opa": "{{ '80' if (is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unavailable') or is_state('media_player.yandex_station_ff98f0291b0365378364a4bb','unknown')) else '255' }}"
+  event:
+    "down":
+      - service: media_player.volume_mute
+        data:
+          entity_id: media_player.yandex_station_ff98f0291b0365378364a4bb
+          is_volume_muted: >
+            {% if state_attr('media_player.yandex_station_ff98f0291b0365378364a4bb', 'is_volume_muted') %}
+            false
+            {% else %}
+            true
+            {%-endif %}

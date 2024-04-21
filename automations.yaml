@@ -14,22 +14,6 @@
     entity_id: b51c26ddbd2a570d5c97879e4036a140
     domain: light
   mode: single
-- id: '1693427302734'
-  alias: Spal_All_off
-  description: Выключить все кнопкой в спальне
-  trigger:
-  - device_id: c8085c6fd6793dc564cb58d9da26ac72
-    domain: zha
-    platform: device
-    type: remote_button_long_press
-    subtype: button
-  condition: []
-  action:
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.light_and_vent_off
-  mode: single
 - id: '1693601083173'
   alias: Kori_All_Off
   description: Выключение света кнопкой из прихожей
@@ -89,6 +73,13 @@
     domain: cover
     entity_id: ad362e208a23ff5e3eda9750b90e7553
     type: open
+  - if:
+    - condition: state
+      entity_id: input_boolean.morningwithalice
+      state: 'on'
+    then:
+    - service: script.alicerun
+      data: {}
   mode: single
 - alias: Notify about HA start
   trigger:
@@ -162,4 +153,145 @@
     target:
       entity_id: timer.notification_timer
     enabled: false
+  mode: single
+- id: '1700597798546'
+  alias: ZHA - Tuya - TS004F Rotating Knob - Custom Actions
+  description: ''
+  use_blueprint:
+    path: seamus65/zha_moes_smart_knob_lights.yaml
+    input:
+      remote: e747216ad87c07247527aef0b3c753c8
+      light:
+        entity_id:
+        - light.workzone_led_light
+      press_short: []
+      toggle:
+      - service: light.turn_on
+        data:
+          brightness_pct: 1
+        target:
+          entity_id: light.workzone_led_light
+      press_double: []
+      press_long: []
+      rotate_left:
+      - service: light.turn_on
+        data:
+          brightness_step: -9
+          transition: 0
+        target:
+          entity_id: light.workzone_led_light
+      max: 10
+- id: '1700847051669'
+  alias: table_on-off_byBtn
+  description: ''
+  trigger:
+  - device_id: c8085c6fd6793dc564cb58d9da26ac72
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: button
+  condition: []
+  action:
+  - type: toggle
+    device_id: 389a819c9ae2d1a40585648688eed7a5
+    entity_id: 8801a601e10ee26d3381cd9281d9df4f
+    domain: light
+  mode: single
+- id: '1707253277250'
+  alias: Alice_kitchenLightOn
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: KitchenLightOn
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 33accf107bcc4993a57d30c782990d5d
+    entity_id: e73dbeae875988e660fbe4ed3c198ee3
+    domain: light
+  mode: single
+- id: '1707253767746'
+  alias: Alice_tableLightOn
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: TableLightOn
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 389a819c9ae2d1a40585648688eed7a5
+    entity_id: 8801a601e10ee26d3381cd9281d9df4f
+    domain: light
+  mode: single
+- id: '1707254667769'
+  alias: Alice_tableLightOff
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: TableLightOff
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 389a819c9ae2d1a40585648688eed7a5
+    entity_id: 8801a601e10ee26d3381cd9281d9df4f
+    domain: light
+  mode: single
+- id: '1707254742481'
+  alias: Alice_kitchenLightOff
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: KitchenLightOff
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 33accf107bcc4993a57d30c782990d5d
+    entity_id: e73dbeae875988e660fbe4ed3c198ee3
+    domain: light
+  mode: single
+- id: '1707255646833'
+  alias: Alice_allOff
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: AllOff
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 33accf107bcc4993a57d30c782990d5d
+    entity_id: e73dbeae875988e660fbe4ed3c198ee3
+    domain: light
+  - type: turn_off
+    device_id: 389a819c9ae2d1a40585648688eed7a5
+    entity_id: 8801a601e10ee26d3381cd9281d9df4f
+    domain: light
+  mode: single
+- id: '1707290178003'
+  alias: Alice_romantic
+  description: ''
+  trigger:
+  - platform: event
+    event_type: yandex_scenario
+    event_data:
+      scenario_name: Romantic
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 33accf107bcc4993a57d30c782990d5d
+    entity_id: e73dbeae875988e660fbe4ed3c198ee3
+    domain: light
+  - type: turn_on
+    device_id: 389a819c9ae2d1a40585648688eed7a5
+    entity_id: 8801a601e10ee26d3381cd9281d9df4f
+    domain: light
   mode: single

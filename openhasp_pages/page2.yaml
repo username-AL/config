@@ -1,0 +1,41 @@
+# OnOff Button
+- obj: "p2b2" 
+  properties:
+    "val": '{{ 1 if states("light.table_bulb_light") == "on" else 0 }}'
+    "text": '{{ "\uE6E8" if is_state("light.table_bulb_light", "on") else "\uE335" | e }}'
+  event:
+    "up":
+      - service: homeassistant.toggle
+        entity_id: "light.table_bulb_light"
+
+# Brightness Slider
+- obj: "p2b3" 
+  properties:
+    "val": "{{ state_attr('light.table_bulb_light', 'brightness') if state_attr('light.table_bulb_light', 'brightness') != None else 0 }}"
+  event:
+    "changed":
+      - service: light.turn_on
+        data:
+          entity_id: light.table_bulb_light
+          brightness: "{{ val }}"
+    "up":
+      - service: light.turn_on
+        data:
+          entity_id: light.table_bulb_light
+          brightness: "{{ val }}"
+
+# Color temperature Slider
+- obj: "p2b4" 
+  properties:
+    "val": "{{ state_attr('light.table_bulb_light', 'kelvin') if state_attr('light.table_bulb_light', 'kelvin') != None else 0 }}"
+  event:
+    "changed":
+      - service: light.turn_on
+        data:
+          entity_id: light.table_bulb_light
+          kelvin: "{{ val }}"
+    "up":
+      - service: light.turn_on
+        data:
+          entity_id: light.table_bulb_light
+          kelvin: "{{ val }}"

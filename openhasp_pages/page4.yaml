@@ -1,0 +1,71 @@
+# Position Slider
+- obj: "p4b10"
+  properties:
+    "val": "{{ 100 - state_attr('cover.spal_cvr_cover', 'current_position') }}"
+  event:
+    "up":
+      - service: cover.set_cover_position
+        data:
+          entity_id: cover.spal_cvr_cover
+          position: "{{ 100 - val }}"
+
+# Open button
+- obj: "p4b11"
+  event:
+    "down":
+      - service: cover.open_cover
+        data:
+          entity_id: cover.spal_cvr_cover
+
+# Stop button
+- obj: "p4b12"
+  event:
+    "down":
+      - service: cover.stop_cover
+        data:
+          entity_id: cover.spal_cvr_cover
+
+# Close button
+- obj: "p4b13"
+  event:
+    "down":
+      - service: cover.close_cover
+        data:
+          entity_id: cover.spal_cvr_cover
+
+# Preset button 30%
+- obj: "p4b21"
+  event:
+    "down":
+      - service: cover.set_cover_position
+        data:
+          entity_id: cover.spal_cvr_cover
+          position: "{{ 70 }}" # 100 - 30%
+
+# Preset button 50%
+- obj: "p4b22"
+  event:
+    "down":
+      - service: cover.set_cover_position
+        data:
+          entity_id: cover.spal_cvr_cover
+          position: "{{ 50 }}"
+
+# Preset button 70%
+- obj: "p4b23"
+  event:
+    "down":
+      - service: cover.set_cover_position
+        data:
+          entity_id: cover.spal_cvr_cover
+          position: "{{ 30 }}" # 100 - 70%
+
+# Preset button 95%
+- obj: "p4b24"
+  event:
+    "down":
+      - service: cover.set_cover_position
+        data:
+          entity_id: cover.spal_cvr_cover
+          position: "{{ 10 }}" # 100 - 90%
+

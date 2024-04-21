@@ -1,0 +1,17 @@
+substitutions:
+  name: m5stack-atom-echo-0f7a2c
+  friendly_name: M5Stack
+packages:
+  m5stack.atom-echo: github://esphome/firmware/media-player/m5stack-atom-echo.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+api:
+  encryption:
+    key: rkcpfCJdMEffF7QpcTzAcThpNIz4p6tyFH7REyOd44k=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

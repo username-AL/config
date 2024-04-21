@@ -1,6 +1,22 @@
-- id: '1693665388654'
-  name: Новая сцена
+- id: '1700862738308'
+  name: BlackOut
   entities:
+    light.dets_sw_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: dets_sw Light
+      supported_features: 8
+      state: 'off'
+    light.dets_sw_light_2:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: dets_sw Light_1
+      supported_features: 8
+      state: 'off'
     light.gost_sw_light_7:
       supported_color_modes:
       - onoff
@@ -8,15 +24,118 @@
       off_brightness:
       friendly_name: gost_sw Light
       supported_features: 8
-      color_mode: onoff
-      state: 'on'
+      state: 'off'
     light.gost_sw_light_8:
       supported_color_modes:
       - onoff
       off_with_transition: false
       off_brightness:
-      friendly_name: gost_sw Light
+      friendly_name: gost_sw Light_1
       supported_features: 8
-      color_mode: onoff
-      state: 'on'
+      state: 'off'
+    light.klad_sw_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: klad_sw Light
+      supported_features: 8
+      state: 'off'
+    light.prih_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Prih_light
+      supported_features: 8
+      state: 'off'
+    light.kori_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Kori_light
+      supported_features: 8
+      state: 'off'
+    light.holl_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Holl_light
+      supported_features: 8
+      state: 'off'
+    light.kuhn_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Kuhn_light
+      supported_features: 8
+      state: 'off'
+    light.toil_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Toil_light
+      supported_features: 8
+      state: 'off'
+    light.toil_vent:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Toil_vent
+      supported_features: 8
+      state: 'off'
+    light.table_light_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: table_light Light
+      supported_features: 8
+      state: 'off'
+    light.spal_light1:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Spal_light1
+      supported_features: 8
+      state: 'off'
+    light.spal_light2:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Spal_light2
+      supported_features: 8
+      state: 'off'
+    light.workzone_led_light:
+      supported_color_modes:
+      - brightness
+      off_with_transition: false
+      off_brightness: 128
+      friendly_name: WorkZone_led Light
+      supported_features: 40
+      state: 'off'
+    light.vann_light:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Vann_light
+      supported_features: 8
+      state: 'off'
+    light.vann_vent:
+      supported_color_modes:
+      - onoff
+      off_with_transition: false
+      off_brightness:
+      friendly_name: Vann_vent
+      supported_features: 8
+      state: 'off'
+  icon: mdi:lightbulb-multiple-off
   metadata: {}

@@ -27,6 +27,17 @@ notify:
     platform: telegram
     chat_id: 226095421
 
+mqtt:
+  sensor:
+    - name: "MQTT Temperature Sensor"
+      state_topic: "sensor/temperature"
+      unit_of_measurement: "c"
+      device_class: "temperature"
+
 # custom ZHA quirks folder
 zha:
   custom_quirks_path: /config/custom_zha_quirks/
+
+openhasp:
+  plate35:
+    objects: !include_dir_merge_list openhasp_pages/
